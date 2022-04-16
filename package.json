@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "parser":"nearleyc carparser.ne -o carparser.js"
   },
   "dependencies": {
     "nearley": "^2.20.1",
