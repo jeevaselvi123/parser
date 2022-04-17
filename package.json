@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "parser":"nearleyc carparser.ne -o carparser.js"
+    "parser": "nearleyc carparser.ne -o carparser.js"
   },
   "dependencies": {
+    "axios": "^0.26.1",
+    "json-server": "^0.17.0",
     "nearley": "^2.20.1",
     "next": "12.1.1",
     "react": "17.0.2",
