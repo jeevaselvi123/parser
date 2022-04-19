@@ -1,0 +1,34 @@
+{
+  "cars": [
+    {
+      "id": 0,
+      "name": "Honda",
+      "price": "$1200",
+      "feature": "Reliability, durability"
+    },
+    {
+      "id": 1,
+      "name": "Swift",
+      "price": "$1300",
+      "feature": "Reliability, durability"
+    },
+    {
+      "id": 2,
+      "name": "BMW",
+      "price": "$15600",
+      "feature": "Reliability, durability"
+    },
+    {
+      "id": 3,
+      "name": "Maruti",
+      "price": "$1100",
+      "feature": "Reliability, durability"
+    },
+    {
+      "id": 4,
+      "name": "Omni",
+      "price": "$1000",
+      "feature": "Reliability, durability"
+    }
+  ]
+}
