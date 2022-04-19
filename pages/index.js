@@ -2,10 +2,12 @@ import {
   EmojiHappyIcon,
   EmojiSadIcon,
   SearchIcon,
+  XIcon,
 } from "@heroicons/react/solid";
 import Nearley from "nearley";
+import Head from "next/head";
 import { useState } from "react";
-import grammar from "../Parser/foodFilter";
+import grammar from "../foodFilterParser/foodFilter";
 
 export default function Home() {
   const [value, setValue] = useState();
@@ -30,6 +32,9 @@ export default function Home() {
   };
   return (
     <>
+      <Head>
+        <title>FoodFilter | Parser</title>
+      </Head>
       <div className="flex min-h-full w-full justify-center p-8">
         <div className="m-10 flex flex-row justify-between">
           <div className="basis-1/12">
@@ -53,10 +58,17 @@ export default function Home() {
                       setValue((prevValue) => (prevValue = e.target.value))
                     }
                     placeholder="Type the food category followed by food item ie.Beverage : Kesar"
-                    id="inputField"
+                    value={value}
                     className="m-4 w-[100%] border-2 border-black text-center"
                     type="text"
                   />
+                  <button
+                    onClick={() => {
+                      setValue("");
+                    }}
+                  >
+                    <XIcon className="h-6 w-6"></XIcon>
+                  </button>
                 </div>
               </div>
               <div className="p-4">
