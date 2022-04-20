@@ -26,7 +26,7 @@ export default function Home() {
         setStatus(true);
     } catch (parseError) {
       console.log("Error at character " + parseError.message);
-      alert("Entered wrong input.Valid format key:value pair");
+      alert("Entered wrong input.Valid format key : value pair");
       setStatus(false);
     }
   };
