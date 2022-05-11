@@ -1,31 +1,37 @@
-expression -> input
+@{%
+  const moo = require("moo")
+  const lexer = moo.compile({
+	starters: ['french onion soup','spring rolls','veg salad','tomato brushchetta'],
+	desserts: ['apple pie with cream','vanilla ice cream','fruit salad','lemon meringue pie'],
+	sideDishes: ['mixed green salad','garden vegetables','french fries','garlic bread'],
+	mainCourse: ['grilled salmon with dill sauce','eggplant lasagne','chicken and mushroom pie','roast beef with vegetables'],
+	category: ['starters','desserts','side dishes','main course'],
+	connector: ['and','or'],
+	wordSpace: /[ \t]+/,
+	quotes: /"/,
+	colon:/:/,
+	comma:/,/,
+	quantity: /[0-9]+/,	
+  });
 
-input -> exp | exp _ logic _ exp | input _ logic _ input
- 
-exp -> exp1 | exp2 | exp3 | exp4 | exp5
+%}
 
-exp1 ->  category1 _ colon _ category1items
-exp2 ->  category2 _ colon _ category2items
-exp3 ->  category3 _ colon _ category3items
-exp4 ->  category4 _ colon _ category4items
-exp5 ->  category5 _ colon _ category5items
+@lexer lexer
 
-_ -> " "
-colon -> ":" 
-logic -> "OR"i | "AND"i | "or"i | "and"i
+main -> sentence :+ 
 
-category1 -> "Beverage"i
-category2 -> "Continental"i 
-category3 -> "Italian"i
-category4 -> "SoftDrinks"i
-category5 -> "SouthIndian"i
+sentence -> sequence:+ | sequence comma space | sequence space connector space
 
-category1items -> "\"Cucumber Smoothie\""i  | "Kesar"i | "\"Watermelon Shake\""i | "LoveBite"i | "\"Hot Chocolate\""i | "\"Jamun Fizz\""i
+sequence -> foodcategory space separator space foodvalue | foodcategory
 
-category2items -> "\"Batter Fish\""i |"\"Broccoli Bake\""i | "\"Buttered Potatoes\""i | "\"Paneer Steak\""i | "\"Chicken & Cheese Salad\""i
+foodcategory -> %category 
 
-category3items -> "Pasta"i | "Pizza"i | "Lasagne"i | "Gelato"i |"\"Bagna Cauda\""i
+space -> %wordSpace
 
-category4items -> "\"Coco Cola\""i | "\"Pepsi\""i | "Maza"i | "Miranda"i
+separator -> %colon
 
-category5items -> "\"Kerala Fish Curry\""i | "\"Masal Dosa\""i | "\"Chicken Chettinad\""i | "\"Andhra Chicke Curry\""i
+connector -> %connector
+
+comma -> %comma
+
+foodvalue -> %quotes %starters %quotes | %quotes %desserts %quotes | %quotes %sideDishes %quotes | %quotes %mainCourse %quotes|  %quotes %quantity %quotes
